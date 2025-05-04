@@ -1,7 +1,7 @@
 {
     "name": "Portfolio of Damian Dalinger",
     "short_name": "Damian Dalinger",
-    "start_url": "/",
+    "start_url": "/docs/",
     "display": "standalone",
     "theme_color": "#161616",
     "background_color": "#161616",
