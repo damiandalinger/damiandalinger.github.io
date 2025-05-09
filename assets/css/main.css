@@ -165,85 +165,6 @@ body {
 	min-width: 320px;
 }
 
-body.is-preload *,
-body.is-preload *:before,
-body.is-preload *:after {
-	-moz-animation: none !important;
-	-webkit-animation: none !important;
-	-ms-animation: none !important;
-	animation: none !important;
-	-moz-transition: none !important;
-	-webkit-transition: none !important;
-	-ms-transition: none !important;
-	transition: none !important;
-}
-
-/* Spinner */
-
-@-moz-keyframes spinner-rotate {
-	0% {
-		-moz-transform: scale(1) rotate(0deg);
-		-webkit-transform: scale(1) rotate(0deg);
-		-ms-transform: scale(1) rotate(0deg);
-		transform: scale(1) rotate(0deg);
-	}
-
-	100% {
-		-moz-transform: scale(1) rotate(360deg);
-		-webkit-transform: scale(1) rotate(360deg);
-		-ms-transform: scale(1) rotate(360deg);
-		transform: scale(1) rotate(360deg);
-	}
-}
-
-@-webkit-keyframes spinner-rotate {
-	0% {
-		-moz-transform: scale(1) rotate(0deg);
-		-webkit-transform: scale(1) rotate(0deg);
-		-ms-transform: scale(1) rotate(0deg);
-		transform: scale(1) rotate(0deg);
-	}
-
-	100% {
-		-moz-transform: scale(1) rotate(360deg);
-		-webkit-transform: scale(1) rotate(360deg);
-		-ms-transform: scale(1) rotate(360deg);
-		transform: scale(1) rotate(360deg);
-	}
-}
-
-@-ms-keyframes spinner-rotate {
-	0% {
-		-moz-transform: scale(1) rotate(0deg);
-		-webkit-transform: scale(1) rotate(0deg);
-		-ms-transform: scale(1) rotate(0deg);
-		transform: scale(1) rotate(0deg);
-	}
-
-	100% {
-		-moz-transform: scale(1) rotate(360deg);
-		-webkit-transform: scale(1) rotate(360deg);
-		-ms-transform: scale(1) rotate(360deg);
-		transform: scale(1) rotate(360deg);
-	}
-}
-
-@keyframes spinner-rotate {
-	0% {
-		-moz-transform: scale(1) rotate(0deg);
-		-webkit-transform: scale(1) rotate(0deg);
-		-ms-transform: scale(1) rotate(0deg);
-		transform: scale(1) rotate(0deg);
-	}
-
-	100% {
-		-moz-transform: scale(1) rotate(360deg);
-		-webkit-transform: scale(1) rotate(360deg);
-		-ms-transform: scale(1) rotate(360deg);
-		transform: scale(1) rotate(360deg);
-	}
-}
-
 /* Type */
 
 body,
@@ -347,21 +268,22 @@ table {
 /* Preloader Overlay */
 #preloader {
 	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #161616;
+	inset: 0;
+	background-color: var(--primary-background);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	z-index: 9999;
-	transition: opacity 0.4s ease;
+
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.5s ease, visibility 0.5s ease;
+	pointer-events: none;
 }
 
 /* Spinner */
 .spinner {
-	color: #C0A062;
+	color: var(--accent-color);
 	display: inline-block;
 	position: relative;
 	width: 80px;
@@ -378,14 +300,14 @@ table {
 	border: 4px solid currentColor;
 	opacity: 1;
 	border-radius: 50%;
-	animation: spinner 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+	animation: ripple-spinner 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
 .spinner div:nth-child(2) {
 	animation-delay: -0.5s;
 }
 
-@keyframes spinner {
+@keyframes ripple-spinner {
 	0% {
 		top: 36px;
 		left: 36px;
@@ -423,7 +345,12 @@ body.loading {
 	overflow: hidden;
 }
 
-body.loading *:not(#preloader) {
+body.loading *:not(#preloader):not(#preloader *) {
+	visibility: hidden;
+}
+
+body:not(.loading) #preloader {
+	opacity: 0;
 	visibility: hidden;
 }
 
@@ -442,7 +369,6 @@ body.loading *:not(#preloader) {
 	padding: 0 6vw;
 	opacity: 0;
 	transform: translateY(-50px);
-	animation: slideDown 2s forwards;
 	height: 50px;
 	width: 100%;
 	top: 0px;
@@ -501,6 +427,10 @@ body.loading *:not(#preloader) {
 	width: 19px;
 	height: 19px;
 	margin-left: -4px;
+}
+
+body:not(.loading) #header {
+	animation: slideDown 1.5s ease forwards;
 }
 
 @keyframes slideDown {
@@ -581,9 +511,6 @@ body.loading *:not(#preloader) {
 	margin-top: -13vh;
 	opacity: 0;
 	transform: translateY(100px);
-	animation: slideDown 2s forwards;
-	animation-delay: 0.75s;
-
 }
 
 .about-background {
@@ -676,6 +603,11 @@ body.loading *:not(#preloader) {
 .about-icons svg {
 	width: 30px;
 	height: 30px;
+}
+
+body:not(.loading) .about-wrapper {
+	animation: slideUp 1.5s ease forwards;
+	animation-delay: 0.5s;
 }
 
 @keyframes slideUp {

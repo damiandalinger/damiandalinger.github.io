@@ -1,13 +1,19 @@
 document.body.classList.add('loading');
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     const images = Array.from(document.querySelectorAll('.project-image-container'))
-        .flatMap(container => JSON.parse(container.dataset.images));
+        .flatMap(container => {
+            try {
+                return JSON.parse(container.dataset.images);
+            } catch {
+                return [];
+            }
+        });
 
     const video = document.querySelector('.video-background video');
     const mediaToLoad = [];
 
-    // Preload images
+    // Load the images
     images.forEach(src => {
         const img = new Image();
         const promise = new Promise(resolve => {
@@ -18,25 +24,27 @@ window.addEventListener('DOMContentLoaded', () => {
         mediaToLoad.push(promise);
     });
 
-    // Preload video
+    // Load the video
     if (video) {
         const promise = new Promise(resolve => {
-            if (video.readyState >= 3) {
+            const done = () => {
+                video.play().catch(() => { });
                 resolve();
+            };
+
+            if (video.readyState >= 3) {
+                done();
             } else {
-                video.addEventListener('loadeddata', resolve);
-                video.addEventListener('error', resolve);
+                video.addEventListener('loadeddata', done, { once: true });
+                video.addEventListener('error', done, { once: true });
             }
         });
         mediaToLoad.push(promise);
     }
 
     Promise.all(mediaToLoad).then(() => {
-        const preloader = document.getElementById('preloader');
-        preloader.style.opacity = '0';
         setTimeout(() => {
-            preloader.style.display = 'none';
             document.body.classList.remove('loading');
-        }, 400); 
+        });
     });
 });
