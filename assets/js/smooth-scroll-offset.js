@@ -1,19 +1,30 @@
-window.addEventListener('resize', function () {
-    const header = document.getElementById('header');
+window.addEventListener('DOMContentLoaded', function () {
     const links = document.querySelectorAll('a[href^="#"]');
-    const offset = header ? header.offsetHeight - 1 : 0;
 
     links.forEach(link => {
         link.addEventListener('click', function (e) {
             const targetId = link.getAttribute('href').slice(1);
-            const target = document.getElementById(targetId);
+            let scrollTarget;
 
-            if (target) {
+            if (targetId === 'about') {
+                scrollTarget = document.querySelector('.about-wrapper');
+            } else if (targetId === 'projects') {
+                scrollTarget = document.querySelector('.project-wrapper');
+            } else {
+                scrollTarget = document.getElementById(targetId);
+            }
+
+            if (scrollTarget) {
                 e.preventDefault();
-                const scrollTo = target.offsetTop - offset;
-                window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+
+                const elementRect = scrollTarget.getBoundingClientRect();
+                const absoluteElementTop = elementRect.top + window.scrollY;
+
+                window.scrollTo({
+                    top: absoluteElementTop,
+                    behavior: 'smooth'
+                });
             }
         });
     });
 });
-window.dispatchEvent(new Event('resize')); 

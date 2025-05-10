@@ -26,11 +26,16 @@ window.addEventListener('load', () => {
 
     // Load the video
     if (video) {
-        const promise = new Promise(resolve => {
+        const videoPromise = new Promise(resolve => {
+            let resolved = false;
+
             const done = () => {
-                video.play().catch(() => { });
-                resolve();
+                if (!resolved) {
+                    resolved = true;
+                    resolve();
+                }
             };
+            setTimeout(done, 1500);
 
             if (video.readyState >= 3) {
                 done();
@@ -39,12 +44,15 @@ window.addEventListener('load', () => {
                 video.addEventListener('error', done, { once: true });
             }
         });
-        mediaToLoad.push(promise);
-    }
 
-    Promise.all(mediaToLoad).then(() => {
-        setTimeout(() => {
-            document.body.classList.remove('loading');
-        });
+        mediaToLoad.push(videoPromise);
+    }
+    
+    const failSafe = new Promise(resolve => setTimeout(resolve, 5000));
+    Promise.race([
+        Promise.all(mediaToLoad),
+        failSafe
+    ]).then(() => {
+        document.body.classList.remove('loading');
     });
 });

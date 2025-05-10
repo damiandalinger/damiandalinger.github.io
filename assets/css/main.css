@@ -827,10 +827,20 @@ body:not(.loading) .about-wrapper {
 	text-decoration: none;
 	font-size: 0.75em;
 	font-weight: 500;
+	line-height: 1;
 }
 
 .project-page-resume-button {
 	gap: 6px;
+}
+
+.project-page-back-button svg,
+.project-page-resume-button svg {
+	padding-bottom: 1px;
+	height: 20px;
+	width: auto;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .project-page-section {
