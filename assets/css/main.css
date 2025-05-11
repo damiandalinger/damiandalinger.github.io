@@ -508,7 +508,7 @@ body:not(.loading) #header {
 	position: relative;
 	width: 100%;
 	max-width: 1000px;
-	margin-top: -13vh;
+	margin-top: -100px;
 	opacity: 0;
 	transform: translateY(100px);
 }
@@ -647,7 +647,7 @@ body:not(.loading) .about-wrapper {
 
 .project-foreground {
 	border: 1px solid var(--line-color);
-	padding: 40px 50px 10px 50px;
+	padding: 40px 50px 30px 50px;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
@@ -757,20 +757,19 @@ body:not(.loading) .about-wrapper {
 	font-size: 0.75em;
 	cursor: pointer;
 	padding: 0px;
-	transition: transform 0.3s ease, color 0.3s ease;
+	transition: padding-left 0.3s ease;
 	font-weight: 300;
 	font-family: 'Roboto', 'Sans Serif';
 	display: flex-start;
 	width: fit-content;
 	border-radius: 0px;
-	height: 3.5em;
+	height: fit-content;
 	text-decoration: none;
 }
 
 @media(hover: hover) and (pointer: fine) {
 	.project-button:hover {
-		transform: translateX(20px);
-		color: var(--font);
+		padding-left: 20px;
 	}
 
 	.project-background:hover .project-title::after {
@@ -784,7 +783,7 @@ body:not(.loading) .about-wrapper {
 
 @media (max-width: 775px) {
 	.project-foreground {
-		padding: 20px 15px 10px 15px;
+		padding: 20px 15px 20px 15px;
 	}
 
 	.about-content {

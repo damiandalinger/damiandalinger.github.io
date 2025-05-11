@@ -2,7 +2,9 @@
     "name": "Portfolio of Damian Dalinger",
     "short_name": "Damian Dalinger",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait",
     "theme_color": "#161616",
     "background_color": "#161616",
     "icons": [
