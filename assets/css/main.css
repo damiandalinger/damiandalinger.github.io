@@ -1,3 +1,37 @@
+@font-face {
+	font-family: 'Oswald';
+	src: url('/assets/fonts/oswald/oswald-variable-font.woff2') format('woff2');
+	font-weight: 200 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('/assets/fonts/roboto/roboto-variable-font.woff2') format('woff2');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('/assets/fonts/roboto/roboto-italic-variable-font.woff2') format('woff2');
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Condensed';
+	src: url('/assets/fonts/roboto-condensed/roboto-condensed-variable-font.woff2') format('woff2');
+	font-weight: 200 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+
 html,
 body,
 div,
@@ -750,7 +784,7 @@ body:not(.loading) .about-wrapper {
 	background: transparent;
 	border: none;
 	color: var(--font);
-	font-size: 0.75em;
+	font-size: 0.8em;
 	cursor: pointer;
 	padding: 0px;
 	transition: padding-left 0.3s ease;
@@ -761,11 +795,13 @@ body:not(.loading) .about-wrapper {
 	border-radius: 0px;
 	height: fit-content;
 	text-decoration: none;
+	margin-top: 25px;
 }
 
 @media(hover: hover) and (pointer: fine) {
 	.project-button:hover {
 		padding-left: 20px;
+		text-decoration: underline;
 	}
 
 	.project-background:hover .project-title::after {
@@ -957,6 +993,7 @@ body:not(.loading) .about-wrapper {
 .project-page-info .value {
 	font-weight: 200;
 	flex: 1 1 100%;
+	line-height: 1.2em;
 }
 
 .project-page-description {
