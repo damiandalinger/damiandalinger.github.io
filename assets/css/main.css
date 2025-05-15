@@ -680,7 +680,7 @@ body:not(.loading) .about-wrapper {
 	padding: 40px 50px 30px 50px;
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: 10px;
 	box-sizing: border-box;
 	border-radius: 15px;
 	box-shadow:
@@ -703,6 +703,7 @@ body:not(.loading) .about-wrapper {
 	display: flex;
 	justify-content: left;
 	gap: 5px;
+	margin-bottom: 20px;
 }
 
 .indicator {
@@ -717,10 +718,10 @@ body:not(.loading) .about-wrapper {
 .indicator::before {
 	content: '';
 	position: absolute;
-	top: -6px;
-	left: -5px;
-	width: 50px;
-	height: 14px;
+	top: -10px;
+	left: -2px;
+	width: 44px;
+	height: 22px;
 	background: transparent;
 }
 
@@ -784,24 +785,53 @@ body:not(.loading) .about-wrapper {
 	background: transparent;
 	border: none;
 	color: var(--font);
-	font-size: 0.8em;
+	font-size: 0.82em;
 	cursor: pointer;
 	padding: 0px;
 	transition: padding-left 0.3s ease;
 	font-weight: 300;
 	font-family: 'Roboto', 'Sans Serif';
-	display: flex-start;
+	display: inline-block;
 	width: fit-content;
 	border-radius: 0px;
 	height: fit-content;
 	text-decoration: none;
-	margin-top: 25px;
+	overflow: hidden;
+	position: relative;
+}
+
+.project-button::before {
+	content: "→";
+	position: absolute;
+	opacity: 0;
+	left: -20px;
+	top: -1px;
+	transition: all 0.3s ease;
+	color: var(--font);
+}
+
+.project-button .chevron {
+	font-size: 1.45em;
+	line-height: 1;
+	vertical-align: middle;
+	position: relative;
+	top: -2px;
 }
 
 @media(hover: hover) and (pointer: fine) {
 	.project-button:hover {
-		padding-left: 20px;
+		padding-left: 25px;
+
+	}
+
+	.project-button:hover .text {
 		text-decoration: underline;
+	}
+
+
+	.project-button:hover::before {
+		left: 0;
+		opacity: 1;
 	}
 
 	.project-background:hover .project-title::after {
