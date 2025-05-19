@@ -619,6 +619,10 @@ body:not(.loading) #header {
 	font-weight: 300;
 }
 
+.about-description a {
+	color: var(--font-dark);
+}
+
 .about-icons {
 	display: flex;
 	gap: 15px;
@@ -693,10 +697,46 @@ body:not(.loading) .about-wrapper {
 	overflow: hidden;
 }
 
+.image-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
 .project-image {
 	max-width: 100%;
+	display: block;
 	height: auto;
+	border-radius: 2px;
+}
+
+.nav-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 1.2em;
+	color: var(--font);
+	background: none;
+	border: none;
 	cursor: pointer;
+	z-index: 2;
+	transition: color 0.2s ease;
+	text-shadow: 0 0 7px rgb(0, 0, 0);
+}
+
+.nav-arrow svg {
+	display: block;
+	margin: 0 auto;
+	width: 35px;
+	height: 35px;
+	filter: drop-shadow(0 0 7px rgba(0, 0, 0, 0.85));
+}
+
+.nav-left {
+	left: 15px;
+}
+
+.nav-right {
+	right: 15px;
 }
 
 .image-indicators {
@@ -800,16 +840,6 @@ body:not(.loading) .about-wrapper {
 	position: relative;
 }
 
-.project-button::before {
-	content: "→";
-	position: absolute;
-	opacity: 0;
-	left: -20px;
-	top: -1px;
-	transition: all 0.3s ease;
-	color: var(--font);
-}
-
 .project-button .chevron {
 	font-size: 1.45em;
 	line-height: 1;
@@ -819,15 +849,9 @@ body:not(.loading) .about-wrapper {
 }
 
 @media(hover: hover) and (pointer: fine) {
-	.project-button:hover {
-		padding-left: 25px;
-
-	}
-
 	.project-button:hover .text {
 		text-decoration: underline;
 	}
-
 
 	.project-button:hover::before {
 		left: 0;
@@ -860,6 +884,14 @@ body:not(.loading) .about-wrapper {
 	.project-wrapper-left,
 	.project-wrapper-right {
 		width: 100%;
+	}
+
+	.nav-left {
+		left: 5px;
+	}
+
+	.nav-right {
+		right: 5px;
 	}
 }
 
