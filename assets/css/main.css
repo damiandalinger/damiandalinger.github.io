@@ -1067,7 +1067,7 @@ body:not(.loading) .about-wrapper {
 	font-weight: 300;
 }
 
-.project-page-controbution h3 {
+.project-page-contribution h3 {
 	margin-bottom: 20px;
 	font-size: 1.5em;
 	font-family: 'Oswald', 'sans serif';
@@ -1112,6 +1112,29 @@ body:not(.loading) .about-wrapper {
 	font-weight: 400;
 }
 
+.project-page-item h4 {
+	margin-bottom: 20px;
+	font-size: 1.2em;
+	font-family: 'Oswald', 'sans serif';
+	color: var(--font);
+	font-weight: 400;
+}
+
+.project-page-image-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+	margin-bottom: 20px;
+}
+
+.project-page-image-grid img {
+	width: calc(50% - 0.5rem);
+	max-width: 500px;
+	height: auto;
+	border-radius: 2px;
+}
+
 @media (max-width: 775px) {
 	.project-page-foreground {
 		padding: 20px 15px 10px 15px;
@@ -1121,6 +1144,10 @@ body:not(.loading) .about-wrapper {
 @media (max-width: 800px) {
 	.project-page-top-buttons {
 		padding: 0 50px;
+	}
+
+	.project-page-image-grid img {
+		width: 100%;
 	}
 }
 
@@ -1133,6 +1160,14 @@ body:not(.loading) .about-wrapper {
 	.project-page-description {
 		grid-column: span 1;
 	}
+}
+
+/*Temporary*/
+.project-mastercaster .nav-arrow,
+.project-mastercaster .image-indicators {
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
 }
 
 /* Footer */
