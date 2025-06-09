@@ -71,9 +71,9 @@
                 <div class="project-page-foreground hero-box">
                     <h1 class="project-page-title">Master<wbr>Caster</h1>
                     <div class="project-page-hero-divider"></div>
-                    <p class="project-page-tagline">Say something. Say anything. Just get the clicks.</p>
+                    <p class="project-page-tagline">Talk your way to the top of the gaming world.</p>
                     <p class="project-page-tagline" style="color: #e5a50a; font-size: 0.85em;">
-                        This project is currently in development. Features and visuals may change.
+                        This project is currently in development and subject to change.
                     </p>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                             <ul>
                                 <li>
                                     <span class="label">Role:</span>
-                                    <span class="value">Programmer</span>
+                                    <span class="value">Programmer & Game Designer</span>
                                 </li>
                                 <li>
                                     <span class="label">Genre:</span>
@@ -112,16 +112,16 @@
                         </div>
                         <div class="project-page-description">
                             <p>
-                                MasterCaster is a single-player simulation and strategy game where players rise from
-                                obscurity to become the world’s most famous video game podcaster. Starting with a cheap
-                                mic and zero followers, you build your brand by reading gaming news, choosing the right
-                                topics, and hosting fictional guests from all corners of the industry. Every choice you
-                                make shapes your growth, fanbase, and reputation.
+                                Start with nothing but a cheap mic and a dream - and rise to become the world’s most
+                                influential
+                                video game podcaster.
+                                Choose your topics wisely, react to the latest news, and host guests from
+                                across the industry. Every decision shapes your reputation and following.
                             </p>
                             <p>
                                 As your influence expands, you unlock advanced tools like sponsorship deals and even the
                                 mysterious Dark Web. Podcasts become more complex, satire
-                                meets strategy, and media power turns into a double-edged sword. Whether you play it
+                                meets strategy and media power turns into a double-edged sword. Whether you play it
                                 safe or push ethical boundaries, your goal remains the same: dominate the charts and
                                 become the voice of the gaming world.
                             </p>
@@ -143,26 +143,27 @@
                         <div class="project-page-line"></div>
                         <div class="project-page-list">
                             <div class="project-page-item">
-                                <p>I built a fully modular game architecture based on Ryan Hipple’s ScriptableObject
+                                <p>I developed a fully modular game architecture based on Ryan Hipple’s ScriptableObject
                                     model, expanding it with additional features like persistent variables and an event
-                                    log window.
-                                    This architecture enables data-driven design, clean separation of systems, and
-                                    minimal hard references between components.</p>
+                                    log window for debugging.
+                                    This architecture enables data-driven design, clean separation of systems and
+                                    minimal hard references, making it easy to scale, test and maintain.</p>
                                 <h4>Persistent Variables</h4>
                                 <div class="project-page-image-grid">
                                     <img src="/assets/img/project-mastercaster/mastercaster-variable-saved.jpg"
                                         alt="Variable with saving enabled." />
                                     <img src="/assets/img/project-mastercaster/mastercaster-variable-not-saved.jpg"
-                                        alt="Variable with savin disabled." />
+                                        alt="Variable with saving disabled." />
                                 </div>
                                 <p>
                                     Each variable has a Runtime Value and, if marked as saveable, an
                                     additional Initial Value.
-                                    When the save toggle is enabled, the system saves the value to a .json file,
+                                    When the save toggle is enabled, the system writes the runtime value to a .json
+                                    file,
                                     restores the runtime value
                                     between sessions and resets it on New Game.
-                                    If saving is disabled, only the runtime value is shown, simplifying non-persistent
-                                    variables. The system supports all basic data types, and the audio architecture
+                                    If saving is disabled, only the runtime value is visible, simplifying non-persistent
+                                    variables. The system supports all common data types and the audio architecture
                                     follows the same structure by storing FMOD events in ScriptableObject containers.
                                 </p>
                                 <h4>RuntimeSets</h4>
@@ -174,7 +175,7 @@
                                 </div>
                                 <p>
                                     RuntimeSets are ScriptableObject-based lists used to track game objects during
-                                    runtime - for example, currently active guests or articles from a genre.
+                                    runtime such as currently active guests or articles from the newspaper.
                                     If the contained object type is serializable, the set can be made persistent simply
                                     by enabling a save toggle.
                                     For non-serializable types, the save option is automatically hidden to avoid
@@ -188,23 +189,22 @@
                                         alt="Custom Event Log window showing raised events and listeners." />
                                 </div>
                                 <p>
-                                    The GameEvents are ScriptableObjects that can be raised and listened to across
-                                    systems, enabling clean, decoupled communication.
+                                    GameEvents are ScriptableObjects used for clean, decoupled communication between
+                                    systems.
                                     They can also be triggered manually via the Inspector at runtime, which is useful
                                     for testing specific scenarios.
-                                    To support debugging, I created a custom Event Log window that records all raised
-                                    events, shows which listeners responded and allows selecting the involved
-                                    GameObjects directly.
+                                    To support debugging, I developed a custom Event Log window that records every
+                                    raised
+                                    event, displays all responding listeners and lets you directly select the
+                                    involved GameObjects.
                                 </p>
                                 <h4>Scene Flow & Bootstrapping</h4>
                                 <p>
                                     The project uses a persistent bootstrapper scene that loads first and remains active
                                     throughout the session.
-                                    It instantiates core systems such as the SaveManager, EventSystem and AudioManager,
-                                    and loads all other scenes additively.
-                                    For example, the Main Menu is loaded after initialization, and game scenes are
-                                    dynamically added or removed as needed.
-                                    To simplify development, I also built an EditorStartup script that allows starting
+                                    It instantiates core systems like the SaveManager, EventSystem and AudioManager,
+                                    while all other scenes are loaded and unloaded additively.
+                                    To streamline development, I also built an EditorStartup script that allows starting
                                     the game from any scene, which is ideal for fast iteration without having to
                                     manually switch
                                     to the bootstrapper.
@@ -212,11 +212,10 @@
                             </div>
                             <h3>Newspaper System</h3>
                             <div class="project-page-line"></div>
-                            <p>I developed a modular newspaper system that dynamically generates unique news pages each
-                                game day. Based on imported article data, it selects relevant headlines, fills a layout
-                                grid and renders the final in-game newspaper, mixing important stories and
-                                randomized
-                                filler content.</p>
+                            <p>Each game day, a newspaper system generates a unique in-game page by selecting
+                                relevant headlines from imported article data. It fills a flexible layout with a mix of
+                                key stories and randomized filler content, then renders the final result for the player.
+                            </p>
                             <div class="project-page-item">
                                 <div class="project-page-video-wrapper">
                                     <iframe src="https://www.youtube.com/embed/KCFlERarRcU" frameborder="0"
@@ -227,15 +226,13 @@
                                         development.</em>
                                 </p>
                                 <p>
-                                    At the start of a new game, articles are imported from .json files into databases
-                                    and
-                                    sorted by their length into categories.
-                                    The article selector chooses 4-5 key stories, which are matched to modular layout
-                                    presets. Each layout is made up of different blocks, and articles are
-                                    dynamically assigned based on their category. Filler articles complete the page
-                                    and a renderer assembles and displays the result in-game.
-                                    The system also supports multi-part stories that appear in logical sequence across
-                                    days.
+                                    At the start of a new game, articles are imported from .json files, categorized by
+                                    length and stored in databases.
+                                    A selector picks 4-5 key stories, which are matched to layouts presets made of
+                                    various block sizes. Articles are then dynamically assigned to blocks based on their
+                                    category, while filler content completes the page.
+                                    The system also supports multi-part stories that unfold across multiple days in a
+                                    logical sequence.
                                 </p>
                             </div>
                         </div>
