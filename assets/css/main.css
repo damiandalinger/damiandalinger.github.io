@@ -1135,6 +1135,19 @@ body:not(.loading) .about-wrapper {
 	border-radius: 2px;
 }
 
+.project-page-link {
+	font-family: 'Roboto', 'sans serif';
+	color: var(--font);
+	font-weight: 300;
+	text-decoration: none;
+}
+
+@media(hover: hover) and (pointer: fine) {
+	.project-page-link:hover {
+		text-decoration: underline;
+	}
+}
+
 @media (max-width: 775px) {
 	.project-page-foreground {
 		padding: 20px 15px 10px 15px;
